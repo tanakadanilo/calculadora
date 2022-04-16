@@ -426,7 +426,7 @@ public class tela extends javax.swing.JFrame {
         }    }//GEN-LAST:event_btn_op_multiplicacaoActionPerformed
 
     private void btn_op_powActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_op_powActionPerformed
-        btn_op('²');
+        btn_op('^');
     }//GEN-LAST:event_btn_op_powActionPerformed
 
     private void btn_op_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_op_clearActionPerformed
@@ -483,9 +483,9 @@ public class tela extends javax.swing.JFrame {
 //  *   caso exista mais de um número na tela
                 numero1 = Double.parseDouble(numeroNaTela.substring(0, fimPrimeiroNummero));
             }
-            if (op != '²' && op != '√') {
-                numero2 = Double.parseDouble(numeroNaTela.substring(comecoSegundoNumero + 1));
-            }
+//            if (op != '²' && op != '√') {
+            numero2 = Double.parseDouble(numeroNaTela.substring(comecoSegundoNumero + 1));
+//            }
             switch (op) {
                 case '+':
                     resultado = String.valueOf(numero1 + numero2);
@@ -500,10 +500,10 @@ public class tela extends javax.swing.JFrame {
                     resultado = String.valueOf(numero1 / numero2);
                     break;
                 case '√':
-                    resultado = String.valueOf(sqrt(numero1));
+                    resultado = String.valueOf(Math.pow(numero2, (1 / numero1)));
                     break;
-                case '²':
-                    resultado = String.valueOf(numero1 * numero1);
+                case '^':
+                    resultado = String.valueOf(Math.pow(numero1, numero2));
                     break;
                 default:
                     resultado = "falha no calculo";
@@ -553,13 +553,13 @@ public class tela extends javax.swing.JFrame {
             } else {
                 numero1 = Double.parseDouble(numeroNaTela);
             }
-            if (operacaoRealizada == '²' || operacaoRealizada == '√') {
-                resultado(numeroNaTela, operacaoRealizada);
-            } else {
-                op = operacaoRealizada;
-                numeroNaTela += "\n" + op + " \n";
-                carregaTexto(numeroNaTela);
-            }
+//            if (operacaoRealizada == '²' || operacaoRealizada == '√') {
+//                resultado(numeroNaTela, operacaoRealizada);
+//            } else {
+            op = operacaoRealizada;
+            numeroNaTela += "\n" + op + " \n";
+            carregaTexto(numeroNaTela);
+//            }
         } else {
             resultado(numeroNaTela, op);
         }
@@ -568,7 +568,7 @@ public class tela extends javax.swing.JFrame {
     private boolean existeCalculo(String numerosNaTela) {
         boolean calculoCorreto = false;
 
-        char[] calculosAceitos = {'+', '-', 'X', '÷', '²', '√'};
+        char[] calculosAceitos = {'+', '-', 'X', '÷', '^', '√'};
 
         for (int i = 0; i < calculosAceitos.length; i++) {
             if (numerosNaTela.indexOf(calculosAceitos[i]) != -1) {//caso encontre o simbolo correspondente
